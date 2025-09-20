@@ -1,7 +1,15 @@
 import styles from './Error.module.css';
 
-const Error = () => {
-  return <div className={styles.error}></div>;
+interface ErrorProps {
+  message: string;
+}
+
+const Error = (props: ErrorProps) => {
+  if (!props.message) {
+    return null;
+  }
+
+  return <div className={styles.error}>{props.message}</div>;
 };
 
 export default Error;
