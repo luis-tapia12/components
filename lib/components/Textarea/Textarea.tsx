@@ -1,14 +1,24 @@
 import { forwardRef } from 'react';
+import classNames from 'classnames';
 
 import styles from './Textarea.module.css';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
+import type { FormSize } from '../@types/global';
+
 interface TextareaProps
-  extends React.TextareaHTMLAttributes<HTMLTextAreaElement> {}
+  extends Omit<React.TextareaHTMLAttributes<HTMLTextAreaElement>, 'size'> {
+  size?: FormSize;
+}
 
 const Textarea = forwardRef<HTMLTextAreaElement, TextareaProps>(
-  (props, ref) => {
-    return <textarea className={styles.textarea} ref={ref} {...props} />;
+  ({ size = 'md', ...props }, ref) => {
+    return (
+      <textarea
+        className={classNames(styles.textarea, styles[size])}
+        ref={ref}
+        {...props}
+      />
+    );
   },
 );
 

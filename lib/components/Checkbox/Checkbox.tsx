@@ -1,14 +1,26 @@
 import { forwardRef } from 'react';
+import classNames from 'classnames';
 
 import styles from './Checkbox.module.css';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface CheckboxProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+import type { FormSize } from '../@types/global';
 
-const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>((props, ref) => {
-  return (
-    <input className={styles.checkbox} ref={ref} {...props} type="checkbox" />
-  );
-});
+interface CheckboxProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  size?: FormSize;
+}
+
+const Checkbox = forwardRef<HTMLInputElement, CheckboxProps>(
+  ({ size = 'md', ...props }, ref) => {
+    return (
+      <input
+        className={classNames(styles.checkbox, styles[size])}
+        ref={ref}
+        {...props}
+        type="checkbox"
+      />
+    );
+  },
+);
 
 export default Checkbox;

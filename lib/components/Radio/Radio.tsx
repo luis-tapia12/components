@@ -1,12 +1,26 @@
 import { forwardRef } from 'react';
+import classNames from 'classnames';
 
 import styles from './Radio.module.css';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface RadioProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+import type { FormSize } from '../@types/global';
 
-const Radio = forwardRef<HTMLInputElement, RadioProps>((props, ref) => {
-  return <input className={styles.input} ref={ref} {...props} />;
-});
+interface RadioProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  size?: FormSize;
+}
+
+const Radio = forwardRef<HTMLInputElement, RadioProps>(
+  ({ size = 'md', ...props }, ref) => {
+    return (
+      <input
+        className={classNames(styles.radio, styles[size])}
+        ref={ref}
+        {...props}
+        type="radio"
+      />
+    );
+  },
+);
 
 export default Radio;

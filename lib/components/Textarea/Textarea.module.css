@@ -1,2 +1,11 @@
 .textarea {
+  font-size: var(--md-font-size);
+}
+
+.textarea.sm {
+  font-size: var(--sm-font-size);
+}
+
+.textarea.lg {
+  font-size: var(--lg-font-size);
 }

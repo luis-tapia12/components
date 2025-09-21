@@ -1,12 +1,24 @@
 import { forwardRef } from 'react';
+import classNames from 'classnames';
 
 import styles from './Button.module.css';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {}
+import type { Size } from '../@types/global';
 
-const Button = forwardRef<HTMLButtonElement, ButtonProps>((props, ref) => {
-  return <button className={styles.button} ref={ref} {...props} />;
-});
+interface ButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
+  size?: Size;
+}
+
+const Button = forwardRef<HTMLButtonElement, ButtonProps>(
+  ({ size = 'md', ...props }, ref) => {
+    return (
+      <button
+        className={classNames(styles.button, styles[size])}
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
 
 export default Button;

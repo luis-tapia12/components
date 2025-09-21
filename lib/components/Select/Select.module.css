@@ -1,2 +1,11 @@
 .select {
+  font-size: var(--md-font-size);
+}
+
+.select.sm {
+  font-size: var(--sm-font-size);
+}
+
+.select.lg {
+  font-size: var(--lg-font-size);
 }

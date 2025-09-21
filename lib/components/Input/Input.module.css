@@ -1,2 +1,11 @@
 .input {
+  font-size: var(--md-font-size);
+}
+
+.input.sm {
+  font-size: var(--sm-font-size);
+}
+
+.input.lg {
+  font-size: var(--lg-font-size);
 }

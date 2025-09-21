@@ -1,12 +1,24 @@
 import { forwardRef } from 'react';
 
 import styles from './Input.module.css';
+import type { FormSize } from '../@types/global';
+import classNames from 'classnames';
 
-// eslint-disable-next-line @typescript-eslint/no-empty-object-type
-interface InputProps extends React.InputHTMLAttributes<HTMLInputElement> {}
+interface InputProps
+  extends Omit<React.InputHTMLAttributes<HTMLInputElement>, 'size'> {
+  size?: FormSize;
+}
 
-const Input = forwardRef<HTMLInputElement, InputProps>((props, ref) => {
-  return <input className={styles.input} ref={ref} {...props} />;
-});
+const Input = forwardRef<HTMLInputElement, InputProps>(
+  ({ size = 'md', ...props }, ref) => {
+    return (
+      <input
+        className={classNames(styles.input, styles[size])}
+        ref={ref}
+        {...props}
+      />
+    );
+  },
+);
 
 export default Input;
